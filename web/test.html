@@ -1,0 +1,28 @@
+<html>
+    <head>
+    </head>
+    <body>
+
+    <script type="text/jaavscript">
+        var audio = new Audio();
+
+        function searchTracks(query) {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/search',
+                data: {
+                    q: query,
+                    type: 'track'
+                },
+                success: function (response) {
+                    if (response.tracks.items.length) {
+                        var track = response.tracks.items[0];
+                        audio.src = track.preview_url;
+                        audio.play();
+                        console.log('playing...');
+                    }
+                }
+            });
+        }
+    </script>
+    </body>
+</html>
